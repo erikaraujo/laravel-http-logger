@@ -1,0 +1,52 @@
+{
+    "name": "erikaraujo/laravel-http-logger",
+    "description": "A Laravel package to log all HTTP requests",
+    "keywords": [
+        "erikaraujo",
+        "laravel-http-logger",
+        "http-logger"
+    ],
+    "homepage": "https://github.com/erikaraujo/laravel-http-logger",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Erik Araujo",
+            "email": "contact@erikaraujo.com",
+            "homepage": "https://erikaraujo.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "^7.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.8.0|^4.0|^5.0",
+        "phpunit/phpunit": "^8.0|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ErikAraujo\\HttpLogger\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ErikAraujo\\HttpLogger\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ErikAraujo\\HttpLogger\\HttpLoggerServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
