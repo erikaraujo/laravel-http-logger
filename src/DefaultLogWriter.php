@@ -4,14 +4,14 @@ namespace ErikAraujo\HttpLogger;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use ErikAraujo\HttpLogger\Models\Log;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DefaultLogWriter implements LogWriter
 {
     public function logRequest(Request $request)
     {
-        $log = new Log();
+        $model = config('http-logger.model');
+        $log = new $model();
 
         $log->fingerprint = $this->getFingerprint($request);
         $log->ip_address = $request->ip();
