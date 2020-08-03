@@ -11,19 +11,21 @@ class DefaultLogWriter implements LogWriter
 {
     public function logRequest(Request $request)
     {
-        Log::create([
-            'fingerprint' => $this->getFingerprint($request),
-            'ip_address' => $request->ip(),
-            'user_agent' => $request->userAgent(),
-            'origin' => $request->getHost(),
-            'scheme' => $request->getScheme(),
-            'method' => $request->method(),
-            'endpoint' => $request->path(),
-            'header' => json_encode($request->headers->all()),
-            'query_string' => $this->getQueryString($request),
-            'post_requests' => $this->getPostRequest($request),
-            'files' => $this->getFiles($request)
-        ]);
+        $log = new Log();
+
+        $log->fingerprint = $this->getFingerprint($request);
+        $log->ip_address = $request->ip();
+        $log->user_agent = $request->userAgent();
+        $log->origin = $request->getHost();
+        $log->scheme = $request->getScheme();
+        $log->method = $request->method();
+        $log->endpoint = $request->path();
+        $log->header = json_encode($request->headers->all());
+        $log->query_string = $this->getQueryString($request);
+        $log->post_requests = $this->getPostRequest($request);
+        $log->files = $this->getFiles($request);
+
+        $log->save();
     }
 
     private function getFiles(Request $request)
